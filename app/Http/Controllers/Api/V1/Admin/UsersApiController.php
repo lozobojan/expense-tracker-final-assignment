@@ -60,4 +60,17 @@ class UsersApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function changeProfilePhoto(Request $request){
+        if($request->hasFile('photo')){
+            $path = $request->file('photo')->store('avatars');
+            $user = auth()->user();
+
+            $user->query()->update([
+                'profile_photo' => $path
+            ]);
+
+            return new UserResource($user);
+        }
+    }
 }

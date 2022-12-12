@@ -18,6 +18,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Dashboard reports
     Route::get('incomes-expenses-report', [\App\Http\Controllers\Api\V1\Admin\DashboardController::class, 'getBasicReportData']);
     Route::get('bar-chart-report', [\App\Http\Controllers\Api\V1\Admin\DashboardController::class, 'getBarChartReportData']);
+
+    // Profile photo
+    Route::post('change-profile-photo', [\App\Http\Controllers\Api\V1\Admin\UsersApiController::class, 'changeProfilePhoto']);
+
 });
 
 Route::post('/login', \App\Http\Controllers\Api\Auth\LoginController::class);

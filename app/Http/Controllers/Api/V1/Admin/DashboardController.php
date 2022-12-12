@@ -44,4 +44,6 @@ class DashboardController extends Controller
             ->groupByRaw('categories.name')
             ->get()->toArray();
     }
+
+
 }
