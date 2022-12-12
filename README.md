@@ -11,7 +11,7 @@
 <br>
 <b>Default credentials:</b><br/><hr/>
     <i>Email:</i> <b>admin@admin.com</b>  <br>
-    <i>Password:</i> <b>12345678</b>
+    <i>Password:</i> <b>password</b>
 
 <hr/>
 
