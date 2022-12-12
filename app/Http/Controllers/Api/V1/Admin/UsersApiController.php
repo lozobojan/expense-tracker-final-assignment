@@ -23,7 +23,7 @@ class UsersApiController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $user = User::create($request->all());
+        $user = User::create($request->except('password') + ['password' => Hash::make($request->get('password'))]);
         $user->roles()->sync($request->input('roles', []));
 
         return (new UserResource($user))
