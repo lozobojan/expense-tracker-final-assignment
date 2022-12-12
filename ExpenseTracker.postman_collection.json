@@ -6,6 +6,79 @@
 	},
 	"item": [
 		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "SumReport",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/incomes-expenses-report",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"incomes-expenses-report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BarChartReport",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/bar-chart-report?type=expense&month=12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bar-chart-report"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "expense"
+								},
+								{
+									"key": "month",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Auth",
 			"item": [
 				{
@@ -295,7 +368,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v1/expenses",
+							"raw": "{{base_url}}/api/v1/expenses?type=expense&description=racun&category_id=2&entry_date=2022-12-10",
 							"host": [
 								"{{base_url}}"
 							],
@@ -303,6 +376,24 @@
 								"api",
 								"v1",
 								"expenses"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "expense"
+								},
+								{
+									"key": "description",
+									"value": "racun"
+								},
+								{
+									"key": "category_id",
+									"value": "2"
+								},
+								{
+									"key": "entry_date",
+									"value": "2022-12-10"
+								}
 							]
 						}
 					},
@@ -507,6 +598,40 @@
 					"response": []
 				},
 				{
+					"name": "Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "EditProfileDetails",
 					"request": {
 						"auth": {
@@ -540,6 +665,45 @@
 								"v1",
 								"users",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UploadProfilePhoto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/Users/bojanlozo/Downloads/5f888826cef4755fed4307d0_180814-SHart_PhilipHeadshot-06.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/change-profile-photo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"change-profile-photo"
 							]
 						}
 					},
