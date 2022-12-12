@@ -13,14 +13,30 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ExpenseApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('expense_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $expenses = Expense::with(['categories'])
+            ->where('user_id', auth()->id())
+            ->when($request->has('type'), function ($query) use ($request){
+                $query->where('type', $request->get('type'));
+            })
+            ->when($request->has('description'), function ($query) use ($request){
+                $query->where('description', 'like', '%'.$request->get('description').'%');
+            })
+            ->when($request->has('entry_date'), function ($query) use ($request){
+                $query->where('entry_date', $request->get('entry_date'));
+            })
+            ->when($request->has('category_id'), function ($query) use ($request){
+                $query->whereHas('categories', function ($q) use ($request){
+                    $q->where('id', $request->get('category_id'));
+                });
+            })
+            ->get();
+
         return new ExpenseResource(
-            Expense::with(['categories'])
-                ->where('user_id', auth()->id())
-                ->get()
+            $expenses
         );
     }
 

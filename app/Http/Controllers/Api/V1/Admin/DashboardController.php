@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function getReportsData(): array
+    public function getBasicReportData(): array
     {
         $incomes = Expense::query()
             ->where('user_id', auth()->id())

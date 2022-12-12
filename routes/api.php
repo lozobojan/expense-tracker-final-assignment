@@ -16,7 +16,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::apiResource('categories', 'CategoryApiController');
 
     // Dashboard reports
-    Route::get('incomes-expenses-report', [\App\Http\Controllers\Api\V1\Admin\DashboardController::class, 'getReportsData']);
+    Route::get('incomes-expenses-report', [\App\Http\Controllers\Api\V1\Admin\DashboardController::class, 'getBasicReportData']);
 });
 
 Route::post('/login', \App\Http\Controllers\Api\Auth\LoginController::class);
