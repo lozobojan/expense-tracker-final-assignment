@@ -26,4 +26,22 @@ class DashboardController extends Controller
             'balance' => number_format($incomes - $expenses, 2)
         ];
     }
+
+    public function getBarChartReportData(Request $request): array
+    {
+        return Expense::query()
+            ->join('category_expense', 'expense_id', '=', 'expenses.id')
+            ->join('categories', 'categories.id', '=', 'category_expense.category_id')
+            ->where('user_id', auth()->id())
+            ->when($request->has('type'), function ($query) use ($request){
+                $query->where('type', 'like', $request->get('type'));
+            })
+            ->when($request->has('month'), function ($query) use ($request){
+                $query->whereMonth('entry_date', $request->get('month'));
+            })
+            ->select('categories.name')
+            ->selectRaw('sum(amount) as total')
+            ->groupByRaw('categories.name')
+            ->get()->toArray();
+    }
 }
