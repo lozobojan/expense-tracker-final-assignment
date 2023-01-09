@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\Admin\UserResource;
+use App\Models\Role;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class UsersApiController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->except('password') + ['password' => Hash::make($request->get('password'))]);
-        $user->roles()->sync($request->input('roles', []));
+        $user->roles()->sync($request->input('roles', [Role::USER]));
 
         return (new UserResource($user))
             ->response()

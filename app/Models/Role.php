@@ -14,6 +14,8 @@ class Role extends Model
 
     public $table = 'roles';
 
+    const USER = 2;
+
     protected $dates = [
         'created_at',
         'updated_at',
