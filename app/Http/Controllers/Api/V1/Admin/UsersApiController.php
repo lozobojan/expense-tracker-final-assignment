@@ -66,7 +66,7 @@ class UsersApiController extends Controller
             $path = $request->file('photo')->store('avatars');
             $user = auth()->user();
 
-            $user->query()->update([
+            $user->update([
                 'profile_photo' => $path
             ]);
 
