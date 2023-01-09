@@ -29,8 +29,9 @@ class ExpenseApiController extends Controller
                 $query->where('entry_date', $request->get('entry_date'));
             })
             ->when($request->has('category_id'), function ($query) use ($request){
-                $query->whereHas('categories', function ($q) use ($request){
-                    $q->where('id', $request->get('category_id'));
+                $categoriesTemp = explode(',', $request->get('category_id'));
+                $query->whereHas('categories', function ($q) use ($categoriesTemp){
+                    $q->whereIn('id', $categoriesTemp);
                 });
             })
             ->get();
