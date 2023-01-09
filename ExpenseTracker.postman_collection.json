@@ -22,7 +22,13 @@
 							]
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{base_url}}/api/v1/incomes-expenses-report",
 							"host": [
@@ -88,7 +94,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\" : \"admin@admin.com\",\n    \"password\" : \"password\"\n}",
+							"raw": "{\n    \"email\" : \"marko23@mail.com\",\n    \"password\" : \"12345678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -368,7 +374,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v1/expenses?type=expense&description=racun&category_id=2&entry_date=2022-12-10",
+							"raw": "{{base_url}}/api/v1/expenses?type=expense&description=racun&category_id=1,2&entry_date=2022-12-10",
 							"host": [
 								"{{base_url}}"
 							],
@@ -388,7 +394,7 @@
 								},
 								{
 									"key": "category_id",
-									"value": "2"
+									"value": "1,2"
 								},
 								{
 									"key": "entry_date",
@@ -557,14 +563,7 @@
 					"name": "Register",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [
@@ -576,7 +575,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\" : \"Marko Markovic 2\",\n    \"email\" : \"marko2@mail.com\",\n    \"password\": \"12345678\"\n}",
+							"raw": "{\n    \"name\" : \"Marko Markovic 2\",\n    \"email\" : \"marko234@mail.com\",\n    \"password\": \"12345678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -584,14 +583,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/users",
+							"raw": "{{base_url}}/api/register",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"v1",
-								"users"
+								"register"
 							]
 						}
 					},
@@ -645,10 +643,16 @@
 							]
 						},
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\" : \"Marko Markovic\",\n    \"email\" : \"marko@mail.com\",\n    \"password\": \"12345678\"\n}",
+							"raw": "{\n    \"name\" : \"Marko Markovic EDIT\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -691,7 +695,7 @@
 								{
 									"key": "photo",
 									"type": "file",
-									"src": "/Users/bojanlozo/Downloads/5f888826cef4755fed4307d0_180814-SHart_PhilipHeadshot-06.jpeg"
+									"src": "/Users/bojanlozo/Downloads/D6F16C99-EF1D-4AAD-85F3-69F6561991D5.JPG"
 								}
 							]
 						},
