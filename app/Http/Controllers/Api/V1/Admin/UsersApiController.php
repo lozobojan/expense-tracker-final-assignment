@@ -46,7 +46,7 @@ class UsersApiController extends Controller
             $newData = $newData + ['password' => Hash::make($request->get('password'))];
         }
         $user->update($newData);
-        $user->roles()->sync($request->input('roles', [2]));
+        $user->roles()->sync($request->input('roles', [Role::USER]));
 
         return (new UserResource($user))
             ->response()
